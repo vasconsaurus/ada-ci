@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'worker'}
+    agent {label 'nodoprojeto'}
     stages {
         stage('Clone repository') {
             steps {
