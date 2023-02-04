@@ -20,7 +20,7 @@ pipeline {
             }
             steps {
                 script{
-                 image = docker.build("talits/v1:develop")
+                 image = docker.build("vasconsaurus/v1:develop")
 
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
             }
             steps {
                 script{
-                 image = docker.build("talits/v1:main")
+                 image = docker.build("vasconsaurus/v1:main")
                 }
             }
         }
