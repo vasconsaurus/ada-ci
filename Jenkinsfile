@@ -5,7 +5,7 @@ pipeline {
             steps {
               git (
                 branch: 'main',
-                url: 'git@github.com:vasconsaurus/ada-ci.git'
+                url: 'https://github.com/vasconsaurus/ada-ci.git'
               )
             }
         }
