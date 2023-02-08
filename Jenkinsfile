@@ -1,12 +1,18 @@
 pipeline {
     agent {label 'nodoprojeto'}
+
+    options {
+    ansiColor('xterm')
+    }
+
     stages {
         stage('Clone repository') {
             steps {
               git (
                 branch: 'main',
-                url: 'git@github.com:vasconsaurus/ada-ci.git'
+                url: 'https://github.com/vasconsaurus/ada-ci.git' 
               )
+              sh "echo '\033[37;44;1mAccessingGitHub\033[0m'"
             }
         }
 
@@ -21,6 +27,7 @@ pipeline {
                 script{
                  image = docker.build("vasconsaurus/v1:develop")
                 }
+                sh "echo '\033[37;44;1mBuildingImageOnDevelop\033[0m'"
             }
         }
         stage('Build') {
@@ -31,6 +38,7 @@ pipeline {
                 script{
                  image = docker.build("vasconsaurus/v1:main")
                 }
+                sh "echo '\033[37;44;1mBuildingImageOnMain\033[0m'"
             }
         }
         stage('Push') {
@@ -40,6 +48,7 @@ pipeline {
                        image.push()
                     }
                 }
+                sh "echo '\033[37;44;1mPushingToDockerHub\033[0m'"
             }
         }
         stage('Deploy') {
@@ -49,7 +58,12 @@ pipeline {
                         sleep 300
                     }
                 }
+                sh "echo '\033[37;44;1mDeployingLocally\033[0m'"
             }
         }
+
+        
     }
 }
+
+
